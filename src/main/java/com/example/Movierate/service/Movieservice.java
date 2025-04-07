@@ -1,4 +1,4 @@
-package com.example.Movie_rate.service;
+package com.example.Movierate.service;
 
 public class Movieservice {
     //valami
