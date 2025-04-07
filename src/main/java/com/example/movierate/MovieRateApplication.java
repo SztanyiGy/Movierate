@@ -1,4 +1,4 @@
-package com.example.Movierate;
+package com.example.movierate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.example.Movierate;
+package com.example.movierate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
