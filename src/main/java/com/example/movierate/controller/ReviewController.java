@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewController {
 
-    private Reviewservice reviewservice;
+    private final Reviewservice reviewservice;
 
     @GetMapping("/movie/{movieId}")
     public ResponseEntity<List<ReviewDto>> getReviewsByMovie(@PathVariable Long movieId) {

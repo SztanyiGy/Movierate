@@ -5,9 +5,9 @@ import java.util.List;
 import com.example.movierate.dto.MovieDto;
 import com.example.movierate.service.Movieservice;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,16 +16,30 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/movies")
+@RequestMapping("/movies")
 public class MovieController {
 
-    private Movieservice movieservice;
+    private final Movieservice movieservice;
 
-    // Frontend oldal megjelenítése
+
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("movies", movieservice.getAllMovies());
-        return "index"; // src/main/resources/templates/index.html
+        return "index";  // A "templates" mappában kell lennie az index.html-nek
+    }
+
+    // Film hozzáadásának kezelése (GET)
+    @GetMapping("/new")
+    public String newMovieForm(Model model) {
+        model.addAttribute("movie", new MovieDto()); // Üres MovieDto-t adunk a formhoz
+        return "new_movie"; // A form oldalt rendereljük
+    }
+
+    // Film hozzáadásának kezelése (POST)
+    @PostMapping("/new")
+    public String createNewMovie(@ModelAttribute MovieDto movieDto) {
+        movieservice.createMovie(movieDto); // Hozzáadjuk a filmet
+        return "redirect:/movies/"; // Visszairányítunk a filmek listájára
     }
 
     // REST API végpontok

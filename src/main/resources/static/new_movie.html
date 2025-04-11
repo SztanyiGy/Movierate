@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Új film hozzáadása</title>
+</head>
+<body>
+
+<h1>➕ Új film hozzáadása</h1>
+
+<form action="#" th:action="@{/movies/new}" th:object="${movie}" method="post">
+    <label for="title">Cím:</label>
+    <input type="text" id="title" th:field="*{title}" placeholder="Film címe" required />
+
+    <label for="director">Rendező:</label>
+    <input type="text" id="director" th:field="*{director}" placeholder="Rendező" required />
+
+    <label for="year">Év:</label>
+    <input type="number" id="year" th:field="*{year}" placeholder="Év" required />
+
+    <label for="genre">Műfaj:</label>
+    <input type="text" id="genre" th:field="*{genre}" placeholder="Műfaj" required />
+
+    <button type="submit">Film hozzáadása</button>
+</form>
+
+</body>
+</html>

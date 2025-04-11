@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MovieServiceImp implements Movieservice {
 
-    private Movierepository movierepository;  // Kihasználva a @RequiredArgsConstructor
+    private final Movierepository movierepository;  // Kihasználva a @RequiredArgsConstructor
 
     @Override
     public List<MovieDto> getAllMovies() {
