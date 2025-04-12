@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "REVIEWMODEL")
 @Getter  // Lombok getterek automatikus generálása
 @Setter  // Lombok setterek automatikus generálása
 public class Reviewmodel {
