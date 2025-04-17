@@ -3,7 +3,7 @@ package com.example.movierate.service;
 import com.example.movierate.dto.MovieDto;
 import com.example.movierate.exception.MovieException;
 import com.example.movierate.model.Moviemodel;
-import com.example.movierate.repository.Movierepository;
+import com.example.movierate.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.example.movierate.dto.ReviewDto;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MovieServiceImp implements Movieservice {
 
-    private final Movierepository movierepository;  // Kihasználva a @RequiredArgsConstructor
+    private final MovieRepository movierepository;  // Kihasználva a @RequiredArgsConstructor
 
     @Override
     public List<MovieDto> getAllMovies() {

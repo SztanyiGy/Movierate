@@ -4,8 +4,8 @@ import com.example.movierate.dto.ReviewDto;
 import com.example.movierate.exception.MovieException;
 import com.example.movierate.model.Moviemodel;
 import com.example.movierate.model.Reviewmodel;
-import com.example.movierate.repository.Movierepository;
-import com.example.movierate.repository.Reviewrepository;
+import com.example.movierate.repository.MovieRepository;
+import com.example.movierate.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements Reviewservice {
 
-    private final Reviewrepository reviewrepository;
-    private final Movierepository movierepository;
+    private final ReviewRepository reviewrepository;
+    private final MovieRepository movierepository;
 
     @Override
     public List<ReviewDto> getReviewsByMovieId(Long movieId) {

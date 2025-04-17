@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Filmek listája</title>
@@ -13,8 +13,25 @@
         h1 {
             color: #222;
         }
-        .top-actions {
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
+        }
+        .auth-buttons a, .logout-button {
+            padding: 8px 16px;
+            background-color: #343a40;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .auth-buttons a:hover, .logout-button:hover {
+            background-color: #23272b;
         }
         .top-actions a {
             padding: 10px 20px;
@@ -59,11 +76,22 @@
 </head>
 <body>
 
-<h1>🎬 Filmek listája</h1>
+<div class="top-bar">
+    <h1>🎬 Filmek listája</h1>
+    <div class="auth-buttons">
+        <!-- Nem bejelentkezett állapot -->
+        <a th:href="@{/register}" sec:authorize="!isAuthenticated()">Regisztráció</a>
+        <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Belépés</a>
+
+        <!-- Bejelentkezett állapot -->
+        <span sec:authorize="isAuthenticated()" style="color: #333; margin-left: 10px; margin-right: 10px;">
+            Üdv, <span sec:authentication="name">Felhasználó</span>!
+        </span>
+    </div>
+</div>
 
 <div class="top-actions">
     <a th:href="@{/movies/new}">➕ Új film hozzáadása</a>
-
 </div>
 
 <table>
@@ -75,12 +103,12 @@
         <th>Év</th>
         <th>Műfaj</th>
         <th>Értékelések</th>
-        <th>Műveletek</th>
+        <th>Új Értékelés</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="movie : ${movies}">
-        <td><img th:src="${movie.img}" alt="Plakát"></td>
+        <td><img th:src="${movie.img}" alt="Plakát" style="max-width: 80px;"></td>
         <td th:text="${movie.title}">Cím</td>
         <td th:text="${movie.director}">Rendező</td>
         <td th:text="${movie.year}">Év</td>
@@ -95,7 +123,8 @@
             </ul>
         </td>
         <td>
-            <a th:href="@{'/movies/' + ${movie.id} + '/reviews/new'}" class="action-button">➕ Értékelés hozzáadása</a>
+            <a th:href="@{'/movies/' + ${movie.id} + '/reviews/new'}"
+               class="action-button">➕ Értékelés hozzáadása</a>
         </td>
     </tr>
     </tbody>

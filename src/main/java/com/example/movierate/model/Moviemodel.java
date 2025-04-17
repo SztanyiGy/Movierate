@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "MOVIEMODEL")
+@Table(name = "moviemodel")
 @Getter
 @Setter
 public class Moviemodel {
@@ -19,6 +19,7 @@ public class Moviemodel {
 
     private String title;
     private String director;
+    @Column(name = "release_year")
     private int year;
     private String genre;
 
