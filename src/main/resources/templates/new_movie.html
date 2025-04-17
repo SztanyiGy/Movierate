@@ -3,29 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Új film hozzáadása</title>
+    <link rel="stylesheet" th:href="@{/css/index_style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+<div class="form-container">
+    <div class="header">
+        <h1><i class="fas fa-film"></i> Új film hozzáadása</h1>
+    </div>
 
-<h1>➕ Új film hozzáadása</h1>
+    <form class="movie-form" action="#" th:action="@{/movies/new}" th:object="${movie}" method="post">
+        <div class="form-group">
+            <label for="title"><i class="fas fa-heading"></i> Cím</label>
+            <input type="text" id="title" th:field="*{title}" placeholder="Film címe" required>
+        </div>
 
-<form action="#" th:action="@{/movies/new}" th:object="${movie}" method="post">
-    <label for="title">Cím:</label>
-    <input type="text" id="title" th:field="*{title}" placeholder="Film címe" required />
+        <div class="form-group">
+            <label for="director"><i class="fas fa-user-tie"></i> Rendező</label>
+            <input type="text" id="director" th:field="*{director}" placeholder="Rendező neve" required>
+        </div>
 
-    <label for="director">Rendező:</label>
-    <input type="text" id="director" th:field="*{director}" placeholder="Rendező" required />
+        <div class="form-group">
+            <label for="year"><i class="fas fa-calendar-alt"></i> Megjelenés éve</label>
+            <input type="number" id="year" th:field="*{year}" placeholder="Évszám" required>
+        </div>
 
-    <label for="year">Év:</label>
-    <input type="number" id="year" th:field="*{year}" placeholder="Év" required />
+        <div class="form-group">
+            <label for="genre"><i class="fas fa-theater-masks"></i> Műfaj</label>
+            <input type="text" id="genre" th:field="*{genre}" placeholder="Pl. dráma, vígjáték" required>
+        </div>
 
-    <label for="genre">Műfaj:</label>
-    <input type="text" id="genre" th:field="*{genre}" placeholder="Műfaj" required />
+        <div class="form-group">
+            <label for="poster"><i class="fas fa-image"></i> Plakát URL</label>
+            <input type="url" id="poster" th:field="*{poster}" placeholder="https://...">
+        </div>
 
-    <label for="poster">Plakát link:</label>
-    <input type="url" id="poster" th:field="*{poster}" placeholder="Plakát URL" />
-
-    <button type="submit">Film hozzáadása</button>
-</form>
-
+        <button type="submit" class="submit-btn">
+            <i class="fas fa-plus-circle"></i> Film hozzáadása
+        </button>
+    </form>
+</div>
 </body>
 </html>

@@ -11,5 +11,6 @@ public class MovieDto {
     private String director;
     private int year;
     private String genre;
+    private String poster; // 👈 ezt add hozzá
     private List<ReviewDto> reviews;
 }
