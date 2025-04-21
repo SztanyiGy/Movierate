@@ -25,8 +25,9 @@ public class MovieController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("movies", movieservice.getAllMovies());
-        return "index";  // A "templates" mappában kell lennie az index.html-nek
+        return "index";
     }
+
 
     // Film hozzáadásának kezelése (GET)
     @GetMapping("/new")

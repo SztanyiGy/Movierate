@@ -37,6 +37,7 @@ public class MovieServiceImp implements Movieservice {
         movie.setDirector(movieDto.getDirector());
         movie.setYear(movieDto.getYear());
         movie.setGenre(movieDto.getGenre());
+        movie.setImg(movieDto.getImg());
         movie = movierepository.save(movie);
         return convertToDto(movie);
     }
@@ -48,6 +49,7 @@ public class MovieServiceImp implements Movieservice {
         movie.setDirector(movieDto.getDirector());
         movie.setYear(movieDto.getYear());
         movie.setGenre(movieDto.getGenre());
+        movie.setImg(movieDto.getImg());
         movie = movierepository.save(movie);
         return convertToDto(movie);
     }

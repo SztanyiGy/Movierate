@@ -22,6 +22,9 @@ public class Moviemodel {
     @Column(name = "release_year")
     private int year;
     private String genre;
+    @Column(name = "img")
+    private String img;
+
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reviewmodel> reviews = new ArrayList<>();
