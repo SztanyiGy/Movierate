@@ -66,11 +66,13 @@ public class MovieServiceImp implements Movieservice {
         movieDto.setDirector(movie.getDirector());
         movieDto.setYear(movie.getYear());
         movieDto.setGenre(movie.getGenre());
+        movieDto.setImg(movie.getImg()); // 👈 EZT ADD HOZZÁ!
         movieDto.setReviews(movie.getReviews().stream()
                 .map(review -> new ReviewDto(review.getId(), review.getReviewerName(),
                         review.getScore(), review.getComment(), review.getMovie().getId()))
                 .collect(Collectors.toList()));
         return movieDto;
     }
+
 }
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Filmek listája</title>
     <link rel="stylesheet" th:href="@{/css/index_style.css}">
-
 </head>
 <body>
 
@@ -14,42 +14,57 @@
         <a th:href="@{/register}" sec:authorize="!isAuthenticated()">Regisztráció</a>
         <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Belépés</a>
 
-        <span sec:authorize="isAuthenticated()" class="username">
-            Üdv, <span sec:authentication="name">Felhasználó</span>!
+        <span sec:authorize="isAuthenticated()">
+            Üdv, <span sec:authentication="name"></span>!
         </span>
+
+        <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+            <button type="submit" class="logout-button">Kijelentkezés</button>
+        </form>
     </div>
 </div>
 
 <div class="top-actions">
     <a th:href="@{/movies/new}" class="create-button">➕ Új film hozzáadása</a>
+    <style>
+        .movie-poster {
+            width: 300px;
+            height: auto;
+            border: 1px solid red; /* csak hogy lásd, hol van a doboz */
+
+        }
+    </style>
 </div>
 
-<div class="movie-card" th:each="movie : ${movies}" style="display: flex; gap: 20px; padding: 20px; margin-bottom: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-    <img class="movie-poster"
-         th:src="${movie.img}"
-         alt="Plakát"
-         style="max-width: 200px; height: auto; border-radius: 8px; object-fit: cover;">
-    <div class="movie-details">
-        <h2 th:text="${movie.title}">Cím</h2>
-        <p><strong>Rendező:</strong> <span th:text="${movie.director}">Rendező</span></p>
-        <p><strong>Év:</strong> <span th:text="${movie.year}">Év</span></p>
-        <p><strong>Műfaj:</strong> <span th:text="${movie.genre}">Műfaj</span></p>
-        <div class="reviews">
-            <h4>Értékelések:</h4>
-            <ul>
-                <li th:each="review : ${movie.reviews}">
-                    <strong th:text="${review.reviewerName}">Név</strong> -
-                    <span th:text="${review.rating}">Értékelés</span>/10:
-                    <em th:text="${review.comment}">Komment</em>
-                </li>
-            </ul>
+<div class="movie-list">
+    <div class="movie-card" th:each="movie : ${movies}">
+        <img class="movie-poster" th:src="${movie.img}"
+             alt="Plakát" style="width: 200px;">
+
+
+        <div class="movie-details">
+            <h2 th:text="${movie.title}">Cím</h2>
+            <p><strong>Rendező:</strong> <span th:text="${movie.director}">Rendező</span></p>
+            <p><strong>Év:</strong> <span th:text="${movie.year}">Év</span></p>
+            <p><strong>Műfaj:</strong> <span th:text="${movie.genre}">Műfaj</span></p>
+
+            <div class="reviews">
+                <h4>Értékelések:</h4>
+                <ul>
+                    <li th:each="review : ${movie.reviews}">
+                        <strong th:text="${review.reviewerName}">Név</strong> -
+                        <span th:text="${review.rating}">Értékelés</span>/10:
+                        <em th:text="${review.comment}">Komment</em>
+                    </li>
+                </ul>
+            </div>
+
+            <a th:href="@{'/movies/' + ${movie.id} + '/reviews/new'}" class="action-button">
+                ➕ Értékelés hozzáadása
+            </a>
         </div>
-        <a th:href="@{'/movies/' + ${movie.id} + '/reviews/new'}" class="action-button">
-            ➕ Értékelés hozzáadása
-        </a>
     </div>
 </div>
-
 
 </body>
 </html>

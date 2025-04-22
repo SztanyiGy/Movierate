@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Új film hozzáadása</title>
-    <link rel="stylesheet" th:href="@{/css/index_style.css}">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/n_m_style.css}">
+
 </head>
 <body>
+
 <div class="form-container">
     <div class="header">
         <h1><i class="fas fa-film"></i> Új film hozzáadása</h1>
@@ -37,7 +37,6 @@
         <div class="form-group">
             <label for="poster"><i class="fas fa-image"></i> Plakát URL</label>
             <input type="url" id="poster" th:field="*{img}" placeholder="https://...">
-
         </div>
 
         <button type="submit" class="submit-btn">
@@ -45,5 +44,6 @@
         </button>
     </form>
 </div>
+
 </body>
 </html>
