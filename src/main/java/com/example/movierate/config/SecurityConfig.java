@@ -30,7 +30,14 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/index", "/register", "/login", "/movies/**", "/css/**", "/js/**", "/images/**", "/h2-console/**").permitAll()
+                        .requestMatchers(
+                                "/", "/index", "/register", "/login",
+                                "/css/**", "/js/**", "/images/**", "/h2-console/**",
+                                "/movies", "/movies/{id}" // megtekintés engedélyezett
+                        ).permitAll()
+                        .requestMatchers(
+                                "/movies/new", "/movies/*/reviews/**"
+                        ).authenticated() // új film, új értékelés csak bejelentkezve
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

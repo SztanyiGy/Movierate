@@ -11,17 +11,19 @@
 <div class="top-bar">
     <h1>🎬 Filmek listája</h1>
     <div class="auth-buttons">
+        <!-- Csak akkor jelenik meg, ha NINCS bejelentkezve -->
         <a th:href="@{/register}" sec:authorize="!isAuthenticated()">Regisztráció</a>
         <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Belépés</a>
 
+        <!-- Csak akkor jelenik meg, ha be van jelentkezve -->
         <span sec:authorize="isAuthenticated()">
-            Üdv, <span sec:authentication="name"></span>!
-        </span>
-
-        <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+        Üdv, <strong><span sec:authentication="name"></span></strong>!
+        <form th:action="@{/logout}" method="post" style="display:inline;">
             <button type="submit" class="logout-button">Kijelentkezés</button>
         </form>
+    </span>
     </div>
+
 </div>
 
 <div class="top-actions">
