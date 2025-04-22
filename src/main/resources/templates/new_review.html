@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Értékelés hozzáadása</title>
+    <link rel="stylesheet" th:href="@{/css/review_style.css}">
+</head>
+<body>
+
+<div class="review-container">
+    <h1>🎞️ <span th:text="${movie.title}">Film címe</span> értékelése</h1>
+
+    <form class="review-form" th:action="@{'/movies/' + ${movie.id} + '/reviews'}" th:object="${review}" method="post">
+        <div class="form-group">
+            <label for="rating">Értékelés (1–10)</label>
+            <input type="number" id="rating" min="1" max="10" th:field="*{rating}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Véleményed (max. 200 karakter)</label>
+            <textarea id="comment" th:field="*{comment}" maxlength="200" placeholder="Írd le a véleményed..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Értékelés küldése</button>
+    </form>
+</div>
+
+</body>
+</html>
