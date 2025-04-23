@@ -55,6 +55,14 @@
             <p><strong>Átlagos értékelés:</strong>
                 <span th:id="'average-score-' + ${movie.id}">Nincs értékelés</span>
             </p>
+            <form th:action="@{'/movies/' + ${movie.id} + '/delete'}" method="post"
+                  sec:authorize="isAuthenticated()"
+                  onsubmit="return confirm('Biztosan törölni szeretnéd a filmet?');">
+                <button type="submit" class="btn btn-danger">🗑️</button>
+            </form>
+            <a th:href="@{'/movies/edit/' + ${movie.id}}" class="btn btn-warning"
+               sec:authorize="isAuthenticated()">✏️</a>
+
 
             <button class="btn btn-outline-secondary mb-2"
                     type="button"

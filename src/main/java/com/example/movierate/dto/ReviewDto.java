@@ -18,4 +18,8 @@ public class ReviewDto {
         this.comment = comment;
         this.movieId = movieId;
     }
+
+    public ReviewDto() {
+
+    }
 }

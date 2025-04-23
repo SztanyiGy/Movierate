@@ -12,6 +12,11 @@
 
     <form class="review-form" th:action="@{'/movies/' + ${movie.id} + '/reviews'}" th:object="${review}" method="post">
         <div class="form-group">
+            <label for="reviewerName">Neved</label>
+            <input type="text" id="reviewerName" th:field="*{reviewerName}" maxlength="50" required>
+        </div>
+
+        <div class="form-group">
             <label for="rating">Értékelés (1–10)</label>
             <input type="number" id="rating" min="1" max="10" th:field="*{rating}" required>
         </div>
@@ -23,6 +28,7 @@
 
         <button type="submit" class="submit-btn">Értékelés küldése</button>
     </form>
+
 </div>
 
 </body>

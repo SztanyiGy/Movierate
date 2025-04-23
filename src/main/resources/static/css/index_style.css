@@ -81,17 +81,26 @@ body {
     position: relative; /* Ez szükséges ahhoz, hogy a gyerekelemeket abszolút pozicionáljuk */
 }
 
-.action-button {
+/* Törlés és módosítás gombok pozicionálása jobb felső sarokba, egymás mellett */
+.movie-card .btn-danger,
+.movie-card .btn-warning {
     position: absolute;
-    top: 15px; /* A kártya tetejétől való távolság */
-    right: 15px; /* A kártya jobb szélétől való távolság */
-    padding: 8px 14px;
-    background-color: #28a745;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
-    z-index: 10; /* Ha más elemek is vannak a kártyán, akkor biztosítjuk, hogy a gomb a tetején jelenjen meg */
+    top: 10px;
+}
+
+.movie-card .btn-danger {
+    right: 10px;
+}
+
+.movie-card .btn-warning {
+    right: 100px; /* Kicsit balra tolva, hogy elférjenek egymás mellett */
+}
+
+/* "Értékelés hozzáadása" gomb pozicionálása jobb alsó sarokba */
+.movie-card .action-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 

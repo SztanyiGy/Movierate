@@ -3,7 +3,9 @@ package com.example.movierate.controller;
 import java.util.List;
 
 import com.example.movierate.dto.MovieDto;
+import com.example.movierate.dto.ReviewDto;
 import com.example.movierate.service.Movieservice;
+import com.example.movierate.service.Reviewservice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,21 +15,19 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Controller osztály, amely a filmekkel kapcsolatos HTTP kéréseket kezeli.
  */
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/movies")
 public class MovieController {
 
     private final Movieservice movieservice;
-
+    private final Reviewservice reviewservice;
 
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("movies", movieservice.getAllMovies());
         return "index";
     }
-
 
     // Film hozzáadásának kezelése (GET)
     @GetMapping("/new")
@@ -41,6 +41,43 @@ public class MovieController {
     public String createNewMovie(@ModelAttribute MovieDto movieDto) {
         movieservice.createMovie(movieDto); // Hozzáadjuk a filmet
         return "redirect:/movies/"; // Visszairányítunk a filmek listájára
+    }
+
+    // Film módosítása (GET - form megjelenítése)
+    @GetMapping("/edit/{id}")
+    public String editMovieForm(@PathVariable Long id, Model model) {
+        MovieDto movieDto = movieservice.getMovieById(id);
+        model.addAttribute("movie", movieDto);
+        return "edit_movie";
+    }
+
+    // HTML form feldolgozás (update)
+    @PostMapping("/edit/{id}")
+    public String updateMovieFromForm(@PathVariable Long id, @ModelAttribute MovieDto movieDto) {
+        movieservice.updateMovie(id, movieDto);
+        return "redirect:/movies/";
+    }
+
+    // Film törlése HTML formból
+    @PostMapping("/{id}/delete")
+    public String deleteMovieViaForm(@PathVariable Long id) {
+        movieservice.deleteMovie(id);
+        return "redirect:/movies/";
+    }
+
+    // ⬇️ ÚJ: Vélemény hozzáadása űrlap megjelenítése
+    @GetMapping("/{id}/reviews/new")
+    public String showReviewForm(@PathVariable Long id, Model model) {
+        MovieDto movieDto = movieservice.getMovieById(id);
+        model.addAttribute("movie", movieDto);
+        model.addAttribute("review", new ReviewDto()); // üres review objektum a formhoz
+        return "new_review"; // new_review.html sablont tölti be
+    }
+
+    @PostMapping("/{id}/reviews")
+    public String addReviewToMovie(@PathVariable Long id, @ModelAttribute ReviewDto reviewDto) {
+        reviewservice.addReviewToMovie(id, reviewDto);
+        return "redirect:/movies/"; // vagy vissza az adott filmhez, ha van olyan oldalad
     }
 
     // REST API végpontok
@@ -64,7 +101,7 @@ public class MovieController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<MovieDto> updateMovie(@PathVariable Long id, @RequestBody MovieDto movieDto) {
+    public ResponseEntity<MovieDto> updateMovieApi(@PathVariable Long id, @RequestBody MovieDto movieDto) {
         return ResponseEntity.ok(movieservice.updateMovie(id, movieDto));
     }
 
