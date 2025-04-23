@@ -1,12 +1,15 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+   margin: 0;
+       font-family: 'Segoe UI', sans-serif;
+       background-image: url(https://media.istockphoto.com/id/492365655/hu/fot%C3%B3/saver-a-film-elind%C3%ADt%C3%A1s%C3%A1hoz.jpg?s=2048x2048&w=is&k=20&c=_VZP_DmkH8_ROnyHI16XLRD67ELpgCUoQeNLr6bbun8=); /* Cseréld le a háttérkép URL-jét */
+       background-size: cover;
+       background-position: center;
+       background-attachment: fixed;
+       color: #333;
 }
 
 .top-bar {
-    background-color: #222;
+    background-color: rgba(34, 34, 34, 0.7); /* Áttetsző háttér a tetejéhez, hogy jobban látszódjon a szöveg */
     color: white;
     padding: 20px 40px;
     display: flex;
@@ -75,7 +78,22 @@ body {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
     flex-wrap: wrap;
+    position: relative; /* Ez szükséges ahhoz, hogy a gyerekelemeket abszolút pozicionáljuk */
 }
+
+.action-button {
+    position: absolute;
+    top: 15px; /* A kártya tetejétől való távolság */
+    right: 15px; /* A kártya jobb szélétől való távolság */
+    padding: 8px 14px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    z-index: 10; /* Ha más elemek is vannak a kártyán, akkor biztosítjuk, hogy a gomb a tetején jelenjen meg */
+}
+
 
 .movie-poster {
     width: 200px;
@@ -105,13 +123,4 @@ body {
     padding-left: 20px;
 }
 
-.action-button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 8px 14px;
-    background-color: #28a745;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
-}
+

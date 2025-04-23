@@ -5,25 +5,23 @@
     <meta charset="UTF-8">
     <title>Filmek listája</title>
     <link rel="stylesheet" th:href="@{/css/index_style.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
 <div class="top-bar">
     <h1>🎬 Filmek listája</h1>
     <div class="auth-buttons">
-        <!-- Csak akkor jelenik meg, ha NINCS bejelentkezve -->
         <a th:href="@{/register}" sec:authorize="!isAuthenticated()">Regisztráció</a>
         <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Belépés</a>
 
-        <!-- Csak akkor jelenik meg, ha be van jelentkezve -->
         <span sec:authorize="isAuthenticated()">
-        Üdv, <strong><span sec:authentication="name"></span></strong>!
-        <form th:action="@{/logout}" method="post" style="display:inline;">
-            <button type="submit" class="logout-button">Kijelentkezés</button>
-        </form>
-    </span>
+            Üdv, <strong><span sec:authentication="name"></span></strong>!
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="logout-button">Kijelentkezés</button>
+            </form>
+        </span>
     </div>
-
 </div>
 
 <div class="top-actions">
@@ -33,31 +31,41 @@
             width: 300px;
             height: auto;
             border: 1px solid red; /* csak hogy lásd, hol van a doboz */
-
+        }
+        .btn {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
         }
     </style>
 </div>
 
 <div class="movie-list">
     <div class="movie-card" th:each="movie : ${movies}">
-        <img class="movie-poster" th:src="${movie.img}"
-             alt="Plakát" style="width: 200px;">
-
+        <img class="movie-poster" th:src="${movie.img}" alt="Plakát" style="width: 200px;">
 
         <div class="movie-details">
             <h2 th:text="${movie.title}">Cím</h2>
             <p><strong>Rendező:</strong> <span th:text="${movie.director}">Rendező</span></p>
             <p><strong>Év:</strong> <span th:text="${movie.year}">Év</span></p>
             <p><strong>Műfaj:</strong> <span th:text="${movie.genre}">Műfaj</span></p>
+            <p><strong>Szereplők:</strong> <span th:text="${movie.actors}">Színészek</span></p>
+            <p><strong>Történet:</strong> <span th:text="${movie.description}">Történet</span></p>
 
-            <div class="reviews">
-                <h4>Értékelések:</h4>
-                <ul>
-                    <li th:each="review : ${movie.reviews}">
-                        <strong th:text="${review.reviewerName}">Név</strong> -
-                        <span th:text="${review.rating}">Értékelés</span>/10:
-                        <em th:text="${review.comment}">Komment</em>
-                    </li>
+            <p><strong>Átlagos értékelés:</strong>
+                <span th:id="'average-score-' + ${movie.id}">Nincs értékelés</span>
+            </p>
+
+            <button class="btn btn-outline-secondary mb-2"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    th:data-bs-target="'#reviewsCollapse-' + ${movie.id}">
+                Vélemények megtekintése
+            </button>
+
+            <div class="collapse" th:id="'reviewsCollapse-' + ${movie.id}">
+                <ul class="list-group" th:id="'review-list-' + ${movie.id}">
+                    <!-- JS tölti be dinamikusan -->
                 </ul>
             </div>
 
@@ -67,6 +75,43 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const movieCards = document.querySelectorAll(".movie-card");
+
+        movieCards.forEach(card => {
+            const movieId = card.querySelector("[id^='average-score-']").id.split("-")[2];
+
+            fetch(`/api/reviews/movie/${movieId}`)
+                .then(res => res.json())
+                .then(data => {
+                    const avgEl = document.getElementById(`average-score-${movieId}`);
+                    const list = document.getElementById(`review-list-${movieId}`);
+
+                    if (!data || data.length === 0) {
+                        avgEl.textContent = "Nincs értékelés";
+                        return;
+                    }
+
+                    let total = 0;
+                    data.forEach(review => {
+                        total += review.score;
+                        const li = document.createElement("li");
+                        li.className = "list-group-item";
+                        li.innerHTML = `<strong>${review.reviewerName}</strong> (${review.score}/10): <em>${review.comment}</em>`;
+                        list.appendChild(li);
+                    });
+
+                    const avg = (total / data.length).toFixed(1);
+                    avgEl.textContent = `${avg}/10`;
+                })
+                .catch(err => {
+                    console.error("Hiba az értékelések betöltésénél:", err);
+                });
+        });
+    });
+</script>
 
 </body>
 </html>

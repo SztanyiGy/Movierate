@@ -24,6 +24,9 @@ public class Moviemodel {
     private String genre;
     @Column(name = "img")
     private String img;
+    private String actors;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)

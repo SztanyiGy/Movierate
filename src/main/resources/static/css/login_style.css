@@ -1,0 +1,112 @@
+/* Alap stílusok */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: url('https://www.example.com/movie-background.jpg') no-repeat center center fixed; /* Cseréld le a háttérképet egy filmes témájú képre */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.form {
+    background-color: rgba(0, 0, 0, 0.7); /* Áttetsző fekete háttér */
+    padding: 30px 40px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.message {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+label {
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    background-color: #333;
+    color: white;
+    margin-top: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #00bfff; /* Kék fókusz szín */
+}
+
+span {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    color: #bbb;
+    font-size: 14px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input:focus + span,
+.input:not(:placeholder-shown) + span {
+    top: 0;
+    font-size: 12px;
+    color: #00bfff;
+}
+
+/* Submit gomb */
+.submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #00bfff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.submit:hover {
+    background-color: #007bb5;
+}
+
+.signin {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.signin a {
+    color: #00bfff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signin a:hover {
+    text-decoration: underline;
+}

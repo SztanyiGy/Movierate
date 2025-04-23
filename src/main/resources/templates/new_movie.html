@@ -39,6 +39,20 @@
             <input type="url" id="poster" th:field="*{img}" placeholder="https://...">
         </div>
 
+        <div class="form-group">
+            <label for="actors"><i class="fas fa-users"></i> Szereplők</label>
+            <input type="text" id="actors" th:field="*{actors}" placeholder="Pl. Brad Pitt, Emma Stone">
+        </div>
+
+        <div class="form-group">
+            <label for="description"><i class="fas fa-align-left"></i> Történet</label>
+            <textarea id="description" th:field="*{description}" rows="4" placeholder="A film rövid története..."></textarea>
+        </div>
+
+
+
+
+
         <button type="submit" class="submit-btn">
             <i class="fas fa-plus-circle"></i> Film hozzáadása
         </button>

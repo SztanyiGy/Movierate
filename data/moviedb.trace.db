@@ -1,0 +1,36 @@
+2025-04-22 11:25:31.543791+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "IMG CHARACTER VARYING(255)": "'https://www.google.com/imgres?q=bossz%C3%BA%C3%A1ll%C3%B3k%201&imgurl=https%3A%... (431)"; SQL statement:
+insert into moviemodel (director,genre,img,title,release_year,id) values (?,?,?,?,?,default) [22001-232]
+2025-04-22 11:26:06.899232+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "IMG CHARACTER VARYING(255)": "'https://www.google.com/imgres?q=bossz%C3%BA%C3%A1ll%C3%B3k%201&imgurl=https%3A%... (431)"; SQL statement:
+insert into moviemodel (director,genre,img,title,release_year,id) values (?,?,?,?,?,default) [22001-232]
+2025-04-22 11:59:20.626785+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "IMG CHARACTER VARYING(255)": "'https://www.amazon.com/Dark-Knight-Christian-Bale/dp/B0091WAN3C/ref=sr_1_3?crid... (477)"; SQL statement:
+insert into moviemodel (director,genre,img,title,release_year,id) values (?,?,?,?,?,default) [22001-232]
+2025-04-23 10:13:03.189770+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'A k\\00fcl\\00f6nlegesen k\\00e9pzett kommand\\00f3t egy d\\00e9l-amerikai dzsunge... (693)"; SQL statement:
+insert into moviemodel (actors,description,director,genre,img,title,release_year,id) values (?,?,?,?,?,?,?,default) [22001-232]
+2025-04-23 10:13:25.186993+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'A k\\00fcl\\00f6nlegesen k\\00e9pzett kommand\\00f3t egy d\\00e9l-amerikai dzsunge... (505)"; SQL statement:
+insert into moviemodel (actors,description,director,genre,img,title,release_year,id) values (?,?,?,?,?,?,?,default) [22001-232]
+2025-04-23 10:26:33.518864+02:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'Batman valamint k\\00e9t t\\00e1rsa, egy rend\\0151r \\00e9s egy \\00fcgy\\00e9sz m... (410)"; SQL statement:
+insert into moviemodel (actors,description,director,genre,img,title,release_year,id) values (?,?,?,?,?,?,?,default) [22001-232]
+2025-04-23 10:26:49.472484+02:00 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'Batman valamint k\\00e9t t\\00e1rsa, egy rend\\0151r \\00e9s egy \\00fcgy\\00e9sz m... (299)"; SQL statement:
+insert into moviemodel (actors,description,director,genre,img,title,release_year,id) values (?,?,?,?,?,?,?,default) [22001-232]
+2025-04-23 10:30:18.743922+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'Batman valamint k\\00e9t t\\00e1rsa, egy rend\\0151r \\00e9s egy \\00fcgy\\00e9sz m... (410)"; SQL statement:
+insert into moviemodel (actors,description,director,genre,img,title,release_year,id) values (?,?,?,?,?,?,?,default) [22001-232]
+2025-04-23 10:31:20.923642+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]* FROM MOVIEMODEL"; expected "identifier"; SQL statement:
+DELETE * FROM MOVIEMODEL [42001-232]
+2025-04-23 10:31:27.762541+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE[*]* FROM MOVIEMODEL"; expected "identifier"; SQL statement:
+DELETE* FROM MOVIEMODEL [42001-232]
+2025-04-23 10:31:30.580330+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE[*]* FROM MOVIEMODEL"; expected "identifier"; SQL statement:
+DELETE* FROM MOVIEMODEL [42001-232]
+2025-04-23 10:31:36.030117+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE[*]*FROM MOVIEMODEL"; expected "identifier"; SQL statement:
+DELETE*FROM MOVIEMODEL [42001-232]

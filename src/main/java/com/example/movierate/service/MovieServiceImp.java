@@ -38,6 +38,8 @@ public class MovieServiceImp implements Movieservice {
         movie.setYear(movieDto.getYear());
         movie.setGenre(movieDto.getGenre());
         movie.setImg(movieDto.getImg());
+        movie.setActors(movieDto.getActors());
+        movie.setDescription(movieDto.getDescription());
         movie = movierepository.save(movie);
         return convertToDto(movie);
     }
@@ -50,6 +52,8 @@ public class MovieServiceImp implements Movieservice {
         movie.setYear(movieDto.getYear());
         movie.setGenre(movieDto.getGenre());
         movie.setImg(movieDto.getImg());
+        movie.setActors(movieDto.getActors());
+        movie.setDescription(movieDto.getDescription());
         movie = movierepository.save(movie);
         return convertToDto(movie);
     }
@@ -67,6 +71,8 @@ public class MovieServiceImp implements Movieservice {
         movieDto.setYear(movie.getYear());
         movieDto.setGenre(movie.getGenre());
         movieDto.setImg(movie.getImg()); // 👈 EZT ADD HOZZÁ!
+        movieDto.setActors(movie.getActors());
+        movieDto.setDescription(movie.getDescription());
         movieDto.setReviews(movie.getReviews().stream()
                 .map(review -> new ReviewDto(review.getId(), review.getReviewerName(),
                         review.getScore(), review.getComment(), review.getMovie().getId()))

@@ -12,5 +12,7 @@ public class MovieDto {
     private int year;
     private String genre;
     private String img; // 👈 ezt add hozzá
+    private String actors;
+    private String description;  // ➕ film története
     private List<ReviewDto> reviews;
 }
