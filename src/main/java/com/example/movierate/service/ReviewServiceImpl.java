@@ -7,6 +7,7 @@ import com.example.movierate.model.Reviewmodel;
 import com.example.movierate.repository.MovieRepository;
 import com.example.movierate.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,13 +24,13 @@ public class ReviewServiceImpl implements Reviewservice {
     public List<ReviewDto> getReviewsByMovieId(Long movieId) {
         Moviemodel movie = movierepository.findById(movieId)
                 .orElseThrow(() -> new MovieException("Movie not found"));
-        // A getReviewsByMovieId metódusban:
+
         return movie.getReviews().stream()
                 .map(r -> {
                     ReviewDto dto = new ReviewDto();
                     dto.setId(r.getId());
                     dto.setReviewerName(r.getReviewerName());
-                    dto.setRating(r.getScore()); // Itt a score értéket a rating-hez rendeljük
+                    dto.setRating(r.getScore());
                     dto.setComment(r.getComment());
                     dto.setMovieId(movieId);
                     return dto;
@@ -41,39 +42,61 @@ public class ReviewServiceImpl implements Reviewservice {
     public ReviewDto addReviewToMovie(Long movieId, ReviewDto reviewDto) {
         Moviemodel movie = movierepository.findById(movieId)
                 .orElseThrow(() -> new MovieException("Movie not found"));
+
         Reviewmodel review = new Reviewmodel();
-        review.setReviewerName(reviewDto.getReviewerName());
+
+        // Automatikusan beállítjuk a bejelentkezett felhasználó nevét
+        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        review.setReviewerName(loggedInUsername);
+
         review.setScore(reviewDto.getRating());
         review.setComment(reviewDto.getComment());
         review.setMovie(movie);
+
         review = reviewrepository.save(review);
-        return new ReviewDto(review.getId(), review.getReviewerName(), review.getScore(), review.getComment(), movieId);
+
+        return new ReviewDto(
+                review.getId(),
+                review.getReviewerName(),
+                review.getScore(),
+                review.getComment(),
+                movieId
+        );
     }
 
     @Override
     public ReviewDto updateReview(Long id, ReviewDto reviewDto) {
         Reviewmodel review = reviewrepository.findById(id)
                 .orElseThrow(() -> new MovieException("Review not found"));
-        review.setReviewerName(reviewDto.getReviewerName());
+
+        review.setReviewerName(reviewDto.getReviewerName()); // Ha update-nél is automatikus név kell, ezt is lehet módosítani.
         review.setScore(reviewDto.getRating());
         review.setComment(reviewDto.getComment());
+
         review = reviewrepository.save(review);
-        return new ReviewDto(review.getId(), review.getReviewerName(), review.getScore(), review.getComment(), review.getMovie().getId());
+
+        return new ReviewDto(
+                review.getId(),
+                review.getReviewerName(),
+                review.getScore(),
+                review.getComment(),
+                review.getMovie().getId()
+        );
     }
+
+    @Override
+    public void deleteReview(Long id) {
+        reviewrepository.deleteById(id);
+    }
+
     public double calculateAverageRatingForMovie(Long movieId) {
         List<ReviewDto> reviews = getReviewsByMovieId(movieId);
         if (reviews.isEmpty()) {
-            return 0.0; // Visszatér 0-val, ha nincs értékelés
+            return 0.0;
         }
         return reviews.stream()
                 .mapToInt(ReviewDto::getRating)
                 .average()
                 .orElse(0.0);
-    }
-
-
-    @Override
-    public void deleteReview(Long id) {
-        reviewrepository.deleteById(id);
     }
 }
