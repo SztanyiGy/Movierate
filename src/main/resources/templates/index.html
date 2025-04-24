@@ -51,10 +51,10 @@
                     <form th:action="@{'/movies/' + ${movie.id} + '/delete'}" method="post"
                           onsubmit="return confirm('Biztosan törölni szeretnéd a filmet?');"
                           style="display: inline-block;">
-                        <button type="submit" class="btn btn-danger">🗑️ Törlés</button>
+                        <button type="submit" class="btn btn-danger">🗑️</button>
                     </form>
 
-                    <a th:href="@{'/movies/edit/' + ${movie.id}}" class="btn btn-warning ms-2">✏️ Szerkesztés</a>
+                    <a th:href="@{'/movies/edit/' + ${movie.id}}" class="btn btn-warning ms-2">✏️ </a>
                 </div>
 
                 <button class="btn btn-outline-secondary mb-2"
