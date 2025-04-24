@@ -23,8 +23,17 @@ public class ReviewServiceImpl implements Reviewservice {
     public List<ReviewDto> getReviewsByMovieId(Long movieId) {
         Moviemodel movie = movierepository.findById(movieId)
                 .orElseThrow(() -> new MovieException("Movie not found"));
+        // A getReviewsByMovieId metódusban:
         return movie.getReviews().stream()
-                .map(r -> new ReviewDto(r.getId(), r.getReviewerName(), r.getScore(), r.getComment(), movieId))
+                .map(r -> {
+                    ReviewDto dto = new ReviewDto();
+                    dto.setId(r.getId());
+                    dto.setReviewerName(r.getReviewerName());
+                    dto.setRating(r.getScore()); // Itt a score értéket a rating-hez rendeljük
+                    dto.setComment(r.getComment());
+                    dto.setMovieId(movieId);
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
 
@@ -51,6 +60,17 @@ public class ReviewServiceImpl implements Reviewservice {
         review = reviewrepository.save(review);
         return new ReviewDto(review.getId(), review.getReviewerName(), review.getScore(), review.getComment(), review.getMovie().getId());
     }
+    public double calculateAverageRatingForMovie(Long movieId) {
+        List<ReviewDto> reviews = getReviewsByMovieId(movieId);
+        if (reviews.isEmpty()) {
+            return 0.0; // Visszatér 0-val, ha nincs értékelés
+        }
+        return reviews.stream()
+                .mapToInt(ReviewDto::getRating)
+                .average()
+                .orElse(0.0);
+    }
+
 
     @Override
     public void deleteReview(Long id) {

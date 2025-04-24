@@ -4,6 +4,9 @@ import com.example.movierate.dto.ReviewDto;
 import com.example.movierate.service.Reviewservice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,11 +20,17 @@ public class ReviewController {
 
     @GetMapping("/movie/{movieId}")
     public ResponseEntity<List<ReviewDto>> getReviewsByMovie(@PathVariable Long movieId) {
-        return ResponseEntity.ok(reviewservice.getReviewsByMovieId(movieId));
+        List<ReviewDto> reviews = reviewservice.getReviewsByMovieId(movieId);
+        // Ha üres a lista, üres listát ad vissza, nem null-t
+        return ResponseEntity.ok(reviews);
     }
 
     @PostMapping("/movie/{movieId}")
-    public ResponseEntity<ReviewDto> addReview(@PathVariable Long movieId, @RequestBody ReviewDto reviewDto) {
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ReviewDto> addReview(@PathVariable Long movieId,
+                                               @RequestBody ReviewDto reviewDto,
+                                               @AuthenticationPrincipal UserDetails userDetails) {
+        reviewDto.setReviewerName(userDetails.getUsername());
         return ResponseEntity.ok(reviewservice.addReviewToMovie(movieId, reviewDto));
     }
 
@@ -35,5 +44,4 @@ public class ReviewController {
         reviewservice.deleteReview(id);
         return ResponseEntity.noContent().build();
     }
-
 }

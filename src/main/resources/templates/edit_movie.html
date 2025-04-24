@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Film szerkesztése</title>
+    <link rel="stylesheet" th:href="@{/css/edit_movie_style.css}" />
+</head>
+<body>
+<h1>Film szerkesztése</h1>
+
+<form th:action="@{'/movies/edit/' + ${movie.id}}" th:object="${movie}" method="post">
+    <label>Cím: <input type="text" th:field="*{title}" required /></label><br/>
+    <label>Rendező: <input type="text" th:field="*{director}" /></label><br/>
+    <label>Év: <input type="number" th:field="*{year}" /></label><br/>
+    <label>Műfaj: <input type="text" th:field="*{genre}" /></label><br/>
+    <label>Kép URL: <input type="text" th:field="*{img}" /></label><br/>
+    <label>Színészek: <input type="text" th:field="*{actors}" /></label><br/>
+    <label>Leírás: <textarea th:field="*{description}"></textarea></label><br/>
+
+    <button type="submit">Mentés</button>
+    <a th:href="@{/movies}">Mégse</a>
+</form>
+
+</body>
+</html>

@@ -33,11 +33,12 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/", "/index", "/register", "/login",
                                 "/css/**", "/js/**", "/images/**", "/h2-console/**",
-                                "/movies", "/movies/{id}" // megtekintés engedélyezett
+                                "/movies", "/movies/{id}",
+                                "/api/reviews/movie/**" // Hozzáadva az értékelések API végpontja
                         ).permitAll()
                         .requestMatchers(
-                                "/movies/new", "/movies/*/reviews/**"
-                        ).authenticated() // új film, új értékelés csak bejelentkezve
+                                "/movies/new", "/movies/*/reviews/new" // Csak az új vélemény hozzáadást védjük
+                        ).authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

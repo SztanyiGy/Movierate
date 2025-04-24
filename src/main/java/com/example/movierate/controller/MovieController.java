@@ -104,6 +104,14 @@ public class MovieController {
     public ResponseEntity<MovieDto> updateMovieApi(@PathVariable Long id, @RequestBody MovieDto movieDto) {
         return ResponseEntity.ok(movieservice.updateMovie(id, movieDto));
     }
+    @GetMapping("/details/{id}")
+    public String movieDetails(@PathVariable Long id, Model model) {
+        MovieDto movie = movieservice.getMovieById(id);
+        model.addAttribute("movie", movie);
+        model.addAttribute("averageRating", reviewservice.calculateAverageRatingForMovie(id));
+        return "movie_details"; // vagy amit használsz
+    }
+
 
     @DeleteMapping("/{id}")
     @ResponseBody

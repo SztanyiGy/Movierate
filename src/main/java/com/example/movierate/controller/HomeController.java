@@ -19,6 +19,7 @@ public class HomeController {
     public String index(Model model) {
         List<MovieDto> movies = movieService.getAllMovies();
         model.addAttribute("movies", movies);
+        // Ne adj hozzá átlagos értékelést itt, azt majd a JS betölti dinamikusan
         return "index";
     }
 }

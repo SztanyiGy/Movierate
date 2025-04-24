@@ -9,4 +9,5 @@ public interface Reviewservice {
     ReviewDto addReviewToMovie(Long movieId, ReviewDto reviewDto);
     ReviewDto updateReview(Long id, ReviewDto reviewDto);
     void deleteReview(Long id);
+    double calculateAverageRatingForMovie(Long id);
 }
