@@ -34,3 +34,18 @@ DELETE* FROM MOVIEMODEL [42001-232]
 2025-04-23 10:31:36.030117+02:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE[*]*FROM MOVIEMODEL"; expected "identifier"; SQL statement:
 DELETE*FROM MOVIEMODEL [42001-232]
+2025-04-24 15:31:58.508409+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]MOVIEMODEL"; expected "MERGE"; SQL statement:
+MOVIEMODEL [42001-232]
+2025-04-24 15:32:19.453366+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SELCET* FROM MOVIEMODEL"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+SELCET* FROM MOVIEMODEL [42001-232]
+2025-04-24 15:32:19.973417+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SELCET* FROM MOVIEMODEL"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+SELCET* FROM MOVIEMODEL [42001-232]
+2025-04-24 15:32:20.205260+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SELCET* FROM MOVIEMODEL"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+SELCET* FROM MOVIEMODEL [42001-232]
+2025-04-24 15:32:20.373269+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SELCET* FROM MOVIEMODEL"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+SELCET* FROM MOVIEMODEL [42001-232]
