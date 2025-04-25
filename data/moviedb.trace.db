@@ -49,3 +49,12 @@ SELCET* FROM MOVIEMODEL [42001-232]
 2025-04-24 15:32:20.373269+02:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SELCET* FROM MOVIEMODEL"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
 SELCET* FROM MOVIEMODEL [42001-232]
+2025-04-25 11:57:24.587549+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MOVIE_MODEL" not found; SQL statement:
+DELETE FROM MOVIE_MODEL WHERE ID = 35 [42102-232]
+2025-04-25 11:57:28.981071+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MOVIE_MODEL" not found; SQL statement:
+DELETE FROM MOVIE_MODEL WHERE ID = 3 [42102-232]
+2025-04-25 11:57:29.787338+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MOVIE_MODEL" not found; SQL statement:
+DELETE FROM MOVIE_MODEL WHERE ID = 3 [42102-232]

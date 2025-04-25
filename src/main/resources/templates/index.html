@@ -29,10 +29,12 @@
     <a th:href="@{/movies/new}" class="btn btn-success mb-3">➕ Új film hozzáadása</a>
 </div>
 
-<div class="movie-list">
-    <div class="movie-card mb-4 p-3 border rounded shadow-sm" th:each="movie : ${movies}">
-        <div class="row">
-            <div class="col-md-3">
+<div class="container movie-list">
+    <div class="row g-4 align-items-start">
+        <div class="col-md-6" th:each="movie : ${movies}">
+            <div class="movie-card p-3 border rounded shadow-sm h-100 d-flex flex-column">
+                <div class="row">
+                    <div class="col-md-4">
                 <img class="img-fluid movie-poster" th:src="${movie.img}" alt="Plakát">
             </div>
             <div class="col-md-9">
@@ -51,10 +53,10 @@
                     <form th:action="@{'/movies/' + ${movie.id} + '/delete'}" method="post"
                           onsubmit="return confirm('Biztosan törölni szeretnéd a filmet?');"
                           style="display: inline-block;">
-                        <button type="submit" class="btn btn-danger">🗑️ Törlés</button>
+                        <button type="submit" class="btn btn-danger">🗑️ </button>
                     </form>
 
-                    <a th:href="@{'/movies/edit/' + ${movie.id}}" class="btn btn-warning ms-2">✏️ Szerkesztés</a>
+                    <a th:href="@{'/movies/edit/' + ${movie.id}}" class="btn btn-warning ms-2">✏️ </a>
                 </div>
 
                 <button class="btn btn-outline-secondary mb-2"
@@ -102,11 +104,28 @@
                     }
 
                     let total = 0;
+                    const currentUser = document.querySelector("span[sec\\:authentication='name']")?.textContent?.trim();
+
                     data.forEach(review => {
                         total += review.rating;
                         const li = document.createElement("li");
-                        li.className = "list-group-item";
-                        li.innerHTML = `<strong>${review.reviewerName}</strong> (${review.rating}/10): <em>${review.comment}</em>`;
+                        li.className = "list-group-item d-flex justify-content-between align-items-start";
+
+                        li.innerHTML = `
+                            <div class="ms-2 me-auto">
+                                <div><strong>${review.reviewerName}</strong> (${review.rating}/10):</div>
+                                <div><em>${review.comment}</em></div>
+                            </div>
+                        `;
+
+                        if (currentUser && currentUser === review.reviewerName) {
+                            const editLink = document.createElement("a");
+                            editLink.href = "/reviews/edit/" + review.id;
+                            editLink.className = "btn btn-sm btn-outline-warning";
+                            editLink.textContent = "✏️ Szerkesztés";
+                            li.appendChild(editLink);
+                        }
+
                         list.appendChild(li);
                     });
 

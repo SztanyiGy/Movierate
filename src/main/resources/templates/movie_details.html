@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${movie.title}">Film részletei</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/details_style.css}">
+</head>
+<body class="container mt-4">
+
+<a th:href="@{/movies}" class="btn btn-secondary mb-3">⬅ Vissza</a>
+
+<div class="row">
+    <div class="col-md-4">
+        <img class="img-fluid"
+             th:src="${movie.img}"
+             th:alt="${movie.title + ' plakátja'}"
+             alt="Plakát">
+    </div>
+    <div class="col-md-8">
+        <h2 th:text="${movie.title}">Cím</h2>
+        <p><strong>Rendező:</strong> <span th:text="${movie.director}"></span></p>
+        <p><strong>Év:</strong> <span th:text="${movie.year}"></span></p>
+        <p><strong>Műfaj:</strong> <span th:text="${movie.genre}"></span></p>
+        <p><strong>Szereplők:</strong> <span th:text="${movie.actors}"></span></p>
+        <p><strong>Leírás:</strong> <span th:text="${movie.description}"></span></p>
+    </div>
+</div>
+
+<hr>
+
+<h4>Vélemények:</h4>
+
+<div th:if="${#lists.isEmpty(reviews)}">
+    <p>Még nincsenek értékelések ehhez a filmhez.</p>
+</div>
+
+<ul class="list-group mb-3" th:if="${!#lists.isEmpty(reviews)}">
+    <li class="list-group-item" th:each="review : ${reviews}">
+        <strong th:text="${review.reviewerName}">Név</strong>
+        (<span th:text="${review.rating}">Értékelés</span>/10):
+        <em th:text="${review.comment}">Komment</em>
+
+        <span sec:authorize="isAuthenticated()">
+            <span th:if="${review.reviewerName == loggedInUser}">
+                <a th:href="@{'/reviews/edit/' + ${review.id}}" class="btn btn-sm btn-outline-warning ms-2">
+                    ✏️ Szerkesztés
+                </a>
+                <a th:href="@{'/reviews/delete/' + ${review.id}}"
+                   onclick="return confirm('Biztosan törlöd ezt az értékelést?')"
+                   class="btn btn-sm btn-outline-danger ms-2">
+                    🗑️ Törlés
+                </a>
+            </span>
+        </span>
+    </li>
+</ul>
+
+<div sec:authorize="isAuthenticated()">
+    <a th:href="@{'/movies/' + ${movie.id} + '/reviews/new'}" class="btn btn-primary">
+        ➕ Értékelés hozzáadása
+    </a>
+</div>
+
+</body>
+</html>
