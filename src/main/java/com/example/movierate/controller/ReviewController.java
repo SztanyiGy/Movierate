@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,9 +40,9 @@ public class ReviewController {
         return ResponseEntity.ok(reviewservice.updateReview(id, reviewDto));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
-        reviewservice.deleteReview(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/delete/{id}")
+    public String deleteReview(@PathVariable Long id, @RequestParam Long movieId) {
+        reviewservice.deleteReview(id);  // Törli a véleményt
+        return "redirect:/movies/" + movieId;  // Visszairányít a film adatlapjára
     }
 }
