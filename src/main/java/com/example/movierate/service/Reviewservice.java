@@ -10,4 +10,6 @@ public interface Reviewservice {
     ReviewDto updateReview(Long id, ReviewDto reviewDto);
     void deleteReview(Long id);
     double calculateAverageRatingForMovie(Long id);
+    // Új metódus
+    ReviewDto getReviewById(Long id);
 }

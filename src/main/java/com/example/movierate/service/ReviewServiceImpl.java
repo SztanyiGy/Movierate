@@ -99,4 +99,17 @@ public class ReviewServiceImpl implements Reviewservice {
                 .average()
                 .orElse(0.0);
     }
+    @Override
+    public ReviewDto getReviewById(Long id) {
+        Reviewmodel review = reviewrepository.findById(id)
+                .orElseThrow(() -> new MovieException("Review not found"));
+
+        return new ReviewDto(
+                review.getId(),
+                review.getReviewerName(),
+                review.getScore(),
+                review.getComment(),
+                review.getMovie().getId()
+        );
+    }
 }
