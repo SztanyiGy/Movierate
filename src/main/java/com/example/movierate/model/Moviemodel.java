@@ -24,6 +24,7 @@ public class Moviemodel {
     private String genre;
     @Column(name = "img")
     private String img;
+    private String trailer;
     private String actors;
     @Column(columnDefinition = "TEXT")
     private String description;
