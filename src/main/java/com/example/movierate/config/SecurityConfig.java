@@ -1,6 +1,6 @@
 package com.example.movierate.config;
 
-import com.example.movierate.service.CustomUserDetailsService;
+import com.example.movierate.service.impl.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;

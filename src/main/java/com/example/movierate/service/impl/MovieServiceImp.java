@@ -1,9 +1,10 @@
-package com.example.movierate.service;
+package com.example.movierate.service.impl;
 
 import com.example.movierate.dto.MovieDto;
 import com.example.movierate.exception.MovieException;
 import com.example.movierate.model.Moviemodel;
 import com.example.movierate.repository.MovieRepository;
+import com.example.movierate.service.Movieservice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.example.movierate.dto.ReviewDto;
