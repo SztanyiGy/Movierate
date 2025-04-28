@@ -1,4 +1,4 @@
-package com.example.movierate.controller;
+package com.example.movierate.controller.movie;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Controller osztály, amely a filmekkel kapcsolatos HTTP kéréseket kezeli.
  */
+@RestController
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/movies")

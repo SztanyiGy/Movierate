@@ -105,6 +105,17 @@
             <p><b>Műfaj:</b> <span th:text="${movie.genre}"></span></p>
             <p><b>Szereplők:</b> <span th:text="${movie.actors}"></span></p>
             <p><b>Leírás:</b> <span th:text="${movie.description}"></span></p>
+            <!-- Trailer rész -->
+            <div class="mt-4">
+                <h4>Előzetes</h4>
+                <div class="ratio ratio-16x9">
+                    <iframe th:src="${#strings.replace(movie.trailer, 'watch?v=', 'embed/')}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
 
             <div class="mt-4">
                 <b>Átlagos értékelés:</b>
