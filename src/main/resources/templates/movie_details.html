@@ -118,7 +118,7 @@
             </div>
 
             <div class="mt-4">
-                <b>Átlagos értékelés:</b>
+                <b>Átlag értékelés:</b>
                 <span th:if="${averageRating != null}" class="badge bg-primary" th:text="${#numbers.formatDecimal(averageRating,1,1)} + '/10'">0.0/10</span>
                 <span th:if="${averageRating == null}">Még nincs értékelés</span>
             </div>
