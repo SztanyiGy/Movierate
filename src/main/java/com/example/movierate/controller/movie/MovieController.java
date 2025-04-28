@@ -1,4 +1,4 @@
-package com.example.movierate.controller;
+package com.example.movierate.controller.movie;
 
 import java.util.List;
 
