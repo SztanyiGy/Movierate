@@ -1,4 +1,4 @@
-package com.example.movierate.service;
+package com.example.movierate.service.impl;
 
 import com.example.movierate.dto.ReviewDto;
 import com.example.movierate.exception.MovieException;
@@ -6,6 +6,7 @@ import com.example.movierate.model.Moviemodel;
 import com.example.movierate.model.Reviewmodel;
 import com.example.movierate.repository.MovieRepository;
 import com.example.movierate.repository.ReviewRepository;
+import com.example.movierate.service.Reviewservice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

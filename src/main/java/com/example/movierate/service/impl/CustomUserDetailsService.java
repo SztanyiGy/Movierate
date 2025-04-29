@@ -1,4 +1,4 @@
-package com.example.movierate.service;
+package com.example.movierate.service.impl;
 
 import com.example.movierate.model.Usermodel;
 import com.example.movierate.repository.UserRepository;
