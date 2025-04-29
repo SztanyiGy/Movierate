@@ -19,7 +19,8 @@
     <label>Előzetes URL: <input type="text" th:field="*{trailer}" /></label><br/>
 
     <button type="submit">Mentés</button>
-    <a th:href="@{/movies}">Mégse</a>
+    <a th:href="@{/movies/details/{id}(id=${movie.id})}" class="btn btn-secondary ms-2">Mégsem</a>
+</form>
 </form>
 
 </body>

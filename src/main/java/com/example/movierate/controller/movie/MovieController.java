@@ -17,7 +17,7 @@ public class MovieController {
     private final Movieservice movieservice;
     private final Reviewservice reviewservice;
 
-    @GetMapping("/")
+    @GetMapping({"", "/"})  // Mind a "/movies", mind a "/movies/" útvonalat kezeli
     public String home(Model model) {
         model.addAttribute("movies", movieservice.getAllMovies());
         return "index";
