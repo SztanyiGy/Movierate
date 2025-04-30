@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MovieServiceImp implements Movieservice {
 
-    private final MovieRepository movierepository;  // Kihasználva a @RequiredArgsConstructor
+    private final MovieRepository movierepository;
 
     @Override
     public List<MovieDto> getAllMovies() {
@@ -27,7 +27,8 @@ public class MovieServiceImp implements Movieservice {
 
     @Override
     public MovieDto getMovieById(Long id) {
-        Moviemodel movie = movierepository.findById(id).orElseThrow(() -> new MovieException("Movie not found"));
+        Moviemodel movie = movierepository.findById(id).orElseThrow(()
+                -> new MovieException("Movie not found"));
         return convertToDto(movie);
     }
 
@@ -48,7 +49,8 @@ public class MovieServiceImp implements Movieservice {
 
     @Override
     public MovieDto updateMovie(Long id, MovieDto movieDto) {
-        Moviemodel movie = movierepository.findById(id).orElseThrow(() -> new MovieException("Movie not found"));
+        Moviemodel movie = movierepository.findById(id).orElseThrow(()
+                -> new MovieException("Movie not found"));
         movie.setTitle(movieDto.getTitle());
         movie.setDirector(movieDto.getDirector());
         movie.setYear(movieDto.getYear());
@@ -78,8 +80,10 @@ public class MovieServiceImp implements Movieservice {
         movieDto.setDescription(movie.getDescription());
         movieDto.setTrailer(movie.getTrailer());
         movieDto.setReviews(movie.getReviews().stream()
-                .map(review -> new ReviewDto(review.getId(), review.getReviewerName(),
-                        review.getScore(), review.getComment(), review.getMovie().getId()))
+                .map(review -> new ReviewDto(review.getId(),
+                        review.getReviewerName(),
+                        review.getScore(), review.getComment(),
+                        review.getMovie().getId()))
                 .collect(Collectors.toList()));
         return movieDto;
     }

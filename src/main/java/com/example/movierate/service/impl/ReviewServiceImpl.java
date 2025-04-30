@@ -47,7 +47,8 @@ public class ReviewServiceImpl implements Reviewservice {
         Reviewmodel review = new Reviewmodel();
 
         // Automatikusan beállítjuk a bejelentkezett felhasználó nevét
-        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        String loggedInUsername = SecurityContextHolder.getContext()
+                .getAuthentication().getName();
         review.setReviewerName(loggedInUsername);
 
         review.setScore(reviewDto.getRating());
@@ -70,7 +71,7 @@ public class ReviewServiceImpl implements Reviewservice {
         Reviewmodel review = reviewrepository.findById(id)
                 .orElseThrow(() -> new MovieException("Review not found"));
 
-        review.setReviewerName(reviewDto.getReviewerName()); // Ha update-nél is automatikus név kell, ezt is lehet módosítani.
+        review.setReviewerName(reviewDto.getReviewerName());
         review.setScore(reviewDto.getRating());
         review.setComment(reviewDto.getComment());
 

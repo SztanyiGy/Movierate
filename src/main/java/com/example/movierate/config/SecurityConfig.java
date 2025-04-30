@@ -17,7 +17,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider authProvider(CustomUserDetailsService userDetailsService) {
+    public DaoAuthenticationProvider authProvider(
+            CustomUserDetailsService userDetailsService) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
@@ -28,25 +29,29 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
-                .authorizeHttpRequests(auth -> auth
-                        // Nyilvános útvonalak - mindenki számára elérhetőek (filmek listája, film részletek megtekintése)
+                .headers(headers -> headers.frameOptions(
+                        frame -> frame.disable()))
+                .authorizeHttpRequests(
+                        auth -> auth
+                        // Nyilvános útvonalak - mindenki számára elérhetőek
                         .requestMatchers(
                                 "/", "/index", "/register", "/login",
-                                "/css/**", "/js/**", "/images/**", "/h2-console/**",
-                                "/movies", "/movies/", "/movies/details/**", "/movies/{id}",
-                                "/api/reviews/movie/**" // API az értékelések lekéréséhez
+                                "/css/**", "/js/**", "/images/**",
+                                "/h2-console/**",
+                                "/movies", "/movies/",
+                                "/movies/details/**", "/movies/{id}",
+                                "/api/reviews/movie/**"
                         ).permitAll()
-                        // Védett útvonalak - csak bejelentkezett felhasználóknak
+                                // Védett útvonalak
                         .requestMatchers(
-                                "/movies/new",          // Új film hozzáadása
-                                "/movies/edit/**",      // Film szerkesztése
-                                "/movies/*/delete",     // Film törlése
-                                "/movies/*/reviews/new", // Új értékelés hozzáadása
-                                "/reviews/edit/**",     // Értékelés szerkesztése
-                                "/reviews/delete/**"    // Értékelés törlése
+                                "/movies/new",
+                                "/movies/edit/**",
+                                "/movies/*/delete",
+                                "/movies/*/reviews/new",
+                                "/reviews/edit/**",
+                                "/reviews/delete/**"
                         ).authenticated()
-                        // Minden más, ami nem definiált fentebb
+                        // Minden más kérés
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

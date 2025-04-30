@@ -47,7 +47,8 @@ public class ReviewWebController {
     }
 
     @PostMapping("/reviews/update/{id}")
-    public String updateReview(@PathVariable Long id, @ModelAttribute ReviewDto reviewDto) {
+    public String updateReview(@PathVariable Long id,
+                               @ModelAttribute ReviewDto reviewDto) {
         try {
             // Frissítjük a véleményt
             ReviewDto updatedReview = reviewservice.updateReview(id, reviewDto);

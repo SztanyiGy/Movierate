@@ -7,7 +7,11 @@ import com.example.movierate.service.Reviewservice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,7 +21,7 @@ public class MovieController {
     private final Movieservice movieservice;
     private final Reviewservice reviewservice;
 
-    @GetMapping({"", "/"})  // Mind a "/movies", mind a "/movies/" útvonalat kezeli
+    @GetMapping({"", "/"})
     public String home(Model model) {
         model.addAttribute("movies", movieservice.getAllMovies());
         return "index";
@@ -43,7 +47,8 @@ public class MovieController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateMovieFromForm(@PathVariable Long id, @ModelAttribute MovieDto movieDto) {
+    public String updateMovieFromForm(@PathVariable Long id,
+                                      @ModelAttribute MovieDto movieDto) {
         movieservice.updateMovie(id, movieDto);
         return "redirect:/movies/";
     }
@@ -63,7 +68,8 @@ public class MovieController {
     }
 
     @PostMapping("/{id}/reviews")
-    public String addReviewToMovie(@PathVariable Long id, @ModelAttribute ReviewDto reviewDto) {
+    public String addReviewToMovie(@PathVariable Long id,
+                                   @ModelAttribute ReviewDto reviewDto) {
         reviewservice.addReviewToMovie(id, reviewDto);
         return "redirect:/movies/";
     }
@@ -72,7 +78,8 @@ public class MovieController {
     public String movieDetails(@PathVariable Long id, Model model) {
         MovieDto movie = movieservice.getMovieById(id);
         model.addAttribute("movie", movie);
-        model.addAttribute("averageRating", reviewservice.calculateAverageRatingForMovie(id));
+        model.addAttribute("averageRating",
+                reviewservice.calculateAverageRatingForMovie(id));
         return "movie_details";
     }
 }
