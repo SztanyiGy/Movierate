@@ -1,0 +1,43 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kód letöltése
+        uses: actions/checkout@v3
+
+      - name: Java 21 telepítése
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Maven dependency cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Maven build és teszt
+        run: mvn clean verify
+
+      - name: Artifact becsomagolása
+        run: mvn package -DskipTests=true
+
+      - name: JAR feltöltése GitHub Artifact-ként
+        uses: actions/upload-artifact@v4
+        with:
+          name: movierate-app
+          path: target/*.jar
