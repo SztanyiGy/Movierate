@@ -28,6 +28,7 @@ public class Moviemodel {
     private String director;
     @Column(name = "release_year")
     private int year;
+    private Integer runtime;
     private String genre;
     @Column(name = "img")
     private String img;

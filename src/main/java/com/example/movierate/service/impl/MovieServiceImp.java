@@ -38,6 +38,7 @@ public class MovieServiceImp implements Movieservice {
         movie.setTitle(movieDto.getTitle());
         movie.setDirector(movieDto.getDirector());
         movie.setYear(movieDto.getYear());
+        movie.setRuntime(movieDto.getRuntime());
         movie.setGenre(movieDto.getGenre());
         movie.setImg(movieDto.getImg());
         movie.setActors(movieDto.getActors());
@@ -54,6 +55,7 @@ public class MovieServiceImp implements Movieservice {
         movie.setTitle(movieDto.getTitle());
         movie.setDirector(movieDto.getDirector());
         movie.setYear(movieDto.getYear());
+        movie.setRuntime(movieDto.getRuntime());
         movie.setGenre(movieDto.getGenre());
         movie.setImg(movieDto.getImg());
         movie.setActors(movieDto.getActors());
@@ -74,6 +76,7 @@ public class MovieServiceImp implements Movieservice {
         movieDto.setTitle(movie.getTitle());
         movieDto.setDirector(movie.getDirector());
         movieDto.setYear(movie.getYear());
+        movieDto.setRuntime(movie.getRuntime());
         movieDto.setGenre(movie.getGenre());
         movieDto.setImg(movie.getImg()); // 👈 EZT ADD HOZZÁ!
         movieDto.setActors(movie.getActors());

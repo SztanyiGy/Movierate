@@ -30,6 +30,11 @@
         </div>
 
         <div class="form-group">
+            <label for="runtime"><i class="fas fa-calendar-alt"></i> Film hossza</label>
+            <input type="runtime" id="runtime" th:field="*{runtime}" placeholder="Évszám" required>
+        </div>
+
+        <div class="form-group">
             <label for="genre"><i class="fas fa-theater-masks"></i> Műfaj</label>
             <input type="text" id="genre" th:field="*{genre}" placeholder="Pl. dráma, vígjáték" required>
         </div>

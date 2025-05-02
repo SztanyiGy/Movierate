@@ -102,8 +102,9 @@
 
             <p><b>Rendező:</b> <span th:text="${movie.director}"></span></p>
             <p><b>Év:</b> <span th:text="${movie.year}"></span></p>
+            <p><b>Játékidő:</b> <span th:text="${movie.runtime + ' perc'}"></span></p>
             <p><b>Műfaj:</b> <span th:text="${movie.genre}"></span></p>
-            <p><b>Szereplők:</b> <span th:text="${movie.actors}"></span></p>
+            <p><b>Szereplők:</b> <span th:text="${movie.actors}"></span> perc</p>
             <p><b>Leírás:</b> <span th:text="${movie.description}"></span></p>
             <!-- Trailer rész -->
             <div class="mt-4">
