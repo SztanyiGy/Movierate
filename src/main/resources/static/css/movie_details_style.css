@@ -1,0 +1,437 @@
+/* Movie Details oldal stílusok */
+body {
+    background-color: #f0f2f5;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Háttérkép ha szükséges */
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://source.unsplash.com/random/1920x1080/?cinema');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    z-index: -1;
+}
+
+/* Fő tartalom konténer */
+.main-content {
+    padding: 40px 0 60px;
+}
+
+/* Vissza gomb szekció */
+.back-section {
+    margin-bottom: 25px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    color: white;
+}
+
+/* Film részletek konténer */
+.movie-details-container {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+
+/* Film fejléc szekció */
+.movie-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.movie-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1e3c72;
+    margin: 0;
+}
+
+.movie-rating {
+    display: flex;
+    align-items: center;
+}
+
+.rating-badge {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+}
+
+.no-rating {
+    color: #888;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Plakát konténer */
+.poster-container {
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.poster-container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.movie-poster {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Szerkesztés gomb */
+.edit-button-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #FF8C00, #FF4500);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 140, 0, 0.3);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-edit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(255, 140, 0, 0.4);
+    color: white;
+}
+
+/* Film információk */
+.movie-info {
+    margin-bottom: 30px;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #555;
+    flex: 0 0 100px;
+    display: flex;
+    align-items: center;
+}
+
+.info-value {
+    flex: 1;
+    color: #333;
+}
+
+.description-row {
+    flex-direction: column;
+}
+
+.description-row .info-label {
+    margin-bottom: 10px;
+}
+
+.description {
+    line-height: 1.7;
+    text-align: justify;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #1e3c72;
+}
+
+/* Trailer szekció */
+.trailer-section {
+    margin-top: 30px;
+}
+
+.trailer-section h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e3c72;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.trailer-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 arány */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.trailer-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+/* Vélemények szekció */
+.reviews-section {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.reviews-header h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1e3c72;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.btn-add-review {
+    background: linear-gradient(135deg, #20bf55, #01baef);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(32, 191, 85, 0.3);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-add-review:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(32, 191, 85, 0.4);
+    color: white;
+}
+
+.no-reviews {
+    text-align: center;
+    padding: 40px 20px;
+    color: #888;
+    font-size: 1.1rem;
+    font-style: italic;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px dashed #ddd;
+}
+
+/* Értékelések lista */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-item {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #1e3c72;
+    transition: all 0.3s ease;
+}
+
+.review-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+}
+
+.reviewer-avatar {
+    font-size: 1.8rem;
+    color: #1e3c72;
+    margin-right: 10px;
+}
+
+.reviewer-name {
+    font-weight: 600;
+    color: #1e3c72;
+    margin-right: 15px;
+}
+
+.review-rating {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.review-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-review-edit, .btn-review-delete {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-review-edit {
+    background: linear-gradient(135deg, #FF8C00, #FF4500);
+    box-shadow: 0 3px 6px rgba(255, 140, 0, 0.3);
+}
+
+.btn-review-delete {
+    background: linear-gradient(135deg, #ff4b4b, #ff7676);
+    box-shadow: 0 3px 6px rgba(255, 75, 75, 0.3);
+}
+
+.btn-review-edit:hover, .btn-review-delete:hover {
+    transform: translateY(-3px);
+    color: white;
+}
+
+.review-content {
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Footer */
+.footer {
+    background-color: #1e3c72;
+    color: white;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+/* Reszponzív beállítások */
+@media (max-width: 992px) {
+    .movie-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .info-row {
+        flex-direction: column;
+    }
+
+    .info-label {
+        margin-bottom: 5px;
+    }
+
+    .reviews-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .add-review-container {
+        width: 100%;
+    }
+
+    .btn-add-review {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .review-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .review-actions {
+        align-self: flex-end;
+    }
+}
+
+/* Animációk */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.movie-details-container, .reviews-section {
+    animation: fadeIn 0.6s ease-out;
+}
