@@ -2,30 +2,60 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vélemény szerkesztése</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" th:href="@{/css/review_style.css}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="container mt-5">
-<h2>✏️ Vélemény szerkesztése</h2>
+<body>
 
-<form th:action="@{/reviews/update/{id}(id=${review.id})}" th:object="${review}" method="post" class="mt-4">
-    <input type="hidden" th:field="*{id}" />
-    <input type="hidden" th:field="*{movieId}" />
-    <input type="hidden" th:field="*{reviewerName}" />
-
-    <div class="mb-3">
-        <label for="rating" class="form-label">Értékelés (1-10)</label>
-        <input type="number" id="rating" min="1" max="10" class="form-control" th:field="*{rating}" required />
+<div class="review-container">
+    <div class="review-header">
+        <h2><i class="fas fa-edit"></i> Vélemény szerkesztése</h2>
     </div>
 
-    <div class="mb-3">
-        <label for="comment" class="form-label">Vélemény</label>
-        <textarea id="comment" rows="4" class="form-control" th:field="*{comment}" required></textarea>
-    </div>
+    <form class="review-form"
+          th:action="@{/reviews/update/{id}(id=${review.id})}"
+          th:object="${review}"
+          method="post">
 
-    <button type="submit" class="btn btn-primary">💾 Mentés</button>
-    <a th:href="@{/movies/details/{id}(id=${review.movieId})}" class="btn btn-secondary ms-2">Mégse</a>
-</form>
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{movieId}" />
+        <input type="hidden" th:field="*{reviewerName}" />
+
+        <div class="form-group">
+            <label for="rating"><i class="fas fa-star-half-alt"></i> Értékelés (1–10)</label>
+            <div class="rating-input">
+                <input type="number" id="rating" min="1" max="10" th:field="*{rating}" required>
+                <div class="rating-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="comment"><i class="fas fa-comment"></i> Vélemény</label>
+            <textarea id="comment" th:field="*{comment}" maxlength="200"
+                      placeholder="Írd le a véleményed... (max. 200 karakter)" oninput="updateCharCount()"></textarea>
+            <span class="char-counter"><span id="charCount">0</span>/200 karakter</span>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-save"></i> Mentés
+            </button>
+            <a th:href="@{/movies/details/{id}(id=${review.movieId})}" class="cancel-btn">
+                <i class="fas fa-times"></i> Mégse
+            </a>
+        </div>
+    </form>
+</div>
+
+
 </body>
 </html>

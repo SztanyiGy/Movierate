@@ -1,63 +1,297 @@
+/* Általános beállítások */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    color: #333;
+    line-height: 1.6;
 }
 
+/* Konténer stílus */
 .review-container {
     max-width: 600px;
-    margin: 60px auto;
-    padding: 30px;
-    background-color: #ffffff;
+    margin: 40px auto;
+    background: #fff;
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-.review-container h1 {
-    font-size: 24px;
-    margin-bottom: 24px;
+/* Fejléc */
+.review-header {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    padding: 20px 30px;
     text-align: center;
 }
 
-.review-form .form-group {
-    margin-bottom: 20px;
-}
-
-.review-form label {
-    display: block;
+.review-header h1, .review-header h2 {
+    margin: 0;
+    font-size: 26px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-header h1 i, .review-header h2 i {
+    margin-right: 10px;
+}
+
+/* Űrlap stílus */
+.review-form {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
     margin-bottom: 8px;
-    color: #333;
-}
-
-.review-form input[type="number"],
-.review-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    font-weight: 500;
+    color: #555;
     font-size: 16px;
-    box-sizing: border-box;
 }
 
-.review-form textarea {
+.form-group label i {
+    margin-right: 8px;
+    color: #ff7e5f;
+}
+
+/* Rating input */
+.rating-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating-input input {
+    width: 70px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.rating-stars {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #ffc107;
+}
+
+/* Input mezők */
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #ff7e5f;
+    box-shadow: 0 0 0 2px rgba(255, 126, 95, 0.2);
+    outline: none;
+    background-color: #fff;
+}
+
+textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
+}
+
+/* Karakter számláló */
+.char-counter {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Gomb stílusok */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
 }
 
 .submit-btn {
-    background-color: #4CAF50;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
     color: white;
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: 14px 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
     width: 100%;
-    transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover {
-    background-color: #45a049;
+    background: linear-gradient(to right, #ff6a4d, #fea665);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cancel-btn {
+    background: #f1f1f1;
+    color: #666;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+}
+
+.cancel-btn:hover {
+    background: #e5e5e5;
+    color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn i, .cancel-btn i {
+    margin-right: 8px;
+}
+
+/* Reszponzív beállítások */
+@media (max-width: 768px) {
+    .review-container {
+        margin: 20px auto;
+    }
+    
+    .review-form {
+        padding: 20px;
+    }
+    
+    .review-header {
+        padding: 15px;
+    }
+    
+    .review-header h1, .review-header h2 {
+        font-size: 22px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .submit-btn, .cancel-btn {
+        width: 100%;
+    }
+}
+
+/* Animációk */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.review-container {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Bootstrap kompatibilitás */
+.container {
+    padding: 0;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.form-control:focus {
+    border-color: #ff7e5f;
+    box-shadow: 0 0 0 2px rgba(255, 126, 95, 0.2);
+    outline: none;
+    background-color: #fff;
+}
+
+.mb-3 {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 16px;
+}
+
+.btn {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #ff6a4d, #fea665);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #f1f1f1;
+    color: #666;
+}
+
+.btn-secondary:hover {
+    background: #e5e5e5;
+    color: #444;
+    transform: translateY(-2px);
+}
+
+.ms-2 {
+    margin-left: 10px;
+}
+
+.mt-4 {
+    margin-top: 25px;
+}
+
+.mt-5 {
+    margin-top: 40px;
 }
