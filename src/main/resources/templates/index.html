@@ -122,12 +122,12 @@
                 const titleElement = item.querySelector("h2");
                 if (titleElement) {
                     const title = titleElement.textContent.toLowerCase();
-                    if (title.includes(searchTerm)) {
+                   if (title.startsWith(searchTerm)) {
                         item.style.display = "block";
-                        hasResults = true;
-                    } else {
-                        item.style.display = "none";
-                    }
+                            hasResults = true;
+                            } else {
+                           item.style.display = "none";
+                   }
                 }
             });
 

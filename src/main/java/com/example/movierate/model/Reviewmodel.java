@@ -21,7 +21,7 @@ public class Reviewmodel {
     private Long id;
 
     private String reviewerName;
-    private int score; // vagy rating, ha ezt használod
+    private int score;
 
     private String comment;
 
