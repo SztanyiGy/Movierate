@@ -85,7 +85,8 @@
                                     </span>
 
                                 <span sec:authorize="isAuthenticated()" class="ms-auto">
-                                        <form th:action="@{'/movies/' + ${movie.id} + '/delete'}" method="post" class="d-inline">
+                                        <form th:action="@{'/movies/' + ${movie.id} + '/delete'}"
+                                              onclick="return confirm('Biztosan törlöd ezt az filmet?')"method="post" class="d-inline">
                                             <button type="submit" class="btn btn-sm btn-danger" title="Film törlése">
                                                 <i class="fas fa-trash"></i>
                                             </button>
