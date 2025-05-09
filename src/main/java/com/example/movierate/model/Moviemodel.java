@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "moviemodel")
+@Table(name = "MOVIEMODEL")
 @Getter
 @Setter
 public class Moviemodel {

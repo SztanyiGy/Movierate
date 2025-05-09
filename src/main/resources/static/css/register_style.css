@@ -1,132 +1,247 @@
- /* Stílusok – Uiverse.io alapján */
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztráció</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .form {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          max-width: 350px;
-          padding: 20px;
-          border-radius: 20px;
-          position: relative;
-          background-color: #1a1a1a;
-          color: #fff;
-          border: 1px solid #333;
-          margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            width: 90%;
+            padding: 30px;
+            border-radius: 16px;
+            position: relative;
+            background-color: #1a1a1a;
+            color: #fff;
+            border: 1px solid #333;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            margin: 20px auto;
+            transition: transform 0.3s ease;
+        }
+
+        .form:hover {
+            transform: translateY(-5px);
         }
 
         .title {
-          font-size: 28px;
-          font-weight: 600;
-          letter-spacing: -1px;
-          position: relative;
-          display: flex;
-          align-items: center;
-          padding-left: 30px;
-          color: #00bfff;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+            color: #00bfff;
+            margin-bottom: 5px;
         }
 
         .title::before,
         .title::after {
-          position: absolute;
-          content: "";
-          height: 16px;
-          width: 16px;
-          border-radius: 50%;
-          left: 0px;
-          background-color: #00bfff;
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            left: 0px;
+            background-color: #00bfff;
         }
 
         .title::after {
-          animation: pulse 1s linear infinite;
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
         .message,
         .signin {
-          font-size: 14.5px;
-          color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
         }
 
         .signin {
-          text-align: center;
-        }
-
-        .signin a:hover {
-          text-decoration: underline royalblue;
+            text-align: center;
+            margin-top: 10px;
         }
 
         .signin a {
-          color: #00bfff;
+            color: #00bfff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .signin a:hover {
+            text-decoration: underline;
+            color: #66d9ff;
         }
 
         .flex {
-          display: flex;
-          width: 100%;
-          gap: 6px;
+            display: flex;
+            width: 100%;
+            gap: 10px;
         }
 
         .form label {
-          position: relative;
+            position: relative;
+            width: 100%;
+            margin-bottom: 5px;
         }
 
         .form label .input {
-          background-color: #333;
-          color: #fff;
-          width: 100%;
-          padding: 20px 5px 5px 10px;
-          outline: 0;
-          border: 1px solid rgba(105, 105, 105, 0.397);
-          border-radius: 10px;
+            background-color: #2a2a2a;
+            color: #fff;
+            width: 100%;
+            padding: 20px 10px 8px 15px;
+            outline: 0;
+            border: 1px solid rgba(105, 105, 105, 0.4);
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form label .input:focus {
+            border-color: #00bfff;
+            box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2);
         }
 
         .form label .input + span {
-          color: rgba(255, 255, 255, 0.5);
-          position: absolute;
-          left: 10px;
-          top: 0px;
-          font-size: 0.9em;
-          cursor: text;
-          transition: 0.3s ease;
+            color: rgba(255, 255, 255, 0.6);
+            position: absolute;
+            left: 15px;
+            top: 0px;
+            font-size: 13px;
+            cursor: text;
+            transition: 0.3s ease;
+            pointer-events: none;
         }
 
         .form label .input:placeholder-shown + span {
-          top: 12.5px;
-          font-size: 0.9em;
+            top: 14px;
+            font-size: 15px;
         }
 
         .form label .input:focus + span,
         .form label .input:valid + span {
-          color: #00bfff;
-          top: 0px;
-          font-size: 0.7em;
-          font-weight: 600;
-        }
-
-        .input {
-          font-size: medium;
+            color: #00bfff;
+            top: 4px;
+            font-size: 12px;
+            font-weight: 500;
         }
 
         .submit {
-          border: none;
-          outline: none;
-          padding: 10px;
-          border-radius: 10px;
-          color: #fff;
-          font-size: 16px;
-          transition: 0.3s ease;
-          background-color: #00bfff;
-          cursor: pointer;
+            border: none;
+            outline: none;
+            padding: 12px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background-color: #00bfff;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
         .submit:hover {
-          background-color: #00bfff96;
+            background-color: #0099cc;
+            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+        }
+
+        .submit:active {
+            transform: scale(0.98);
         }
 
         @keyframes pulse {
-          from {
-            transform: scale(0.9);
-            opacity: 1;
-          }
-          to {
-            transform: scale(1.8);
-            opacity: 0;
-          }
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(2);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
         }
+
+        /* Reszponzív beállítások */
+        @media (max-width: 500px) {
+            .flex {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<form class="form" th:action="@{/register}" method="post">
+    <p class="title">Regisztráció</p>
+    <p class="message">Hozz létre egy fiókot az alkalmazás használatához.</p>
+
+    <div class="flex">
+        <label>
+            <input class="input" type="text" name="lastname" required placeholder="">
+            <span>Vezetéknév</span>
+        </label>
+
+        <label>
+            <input class="input" type="text" name="firstname" required placeholder="">
+            <span>Keresztnév</span>
+        </label>
+    </div>
+
+    <label>
+        <input class="input" type="text" name="username" required placeholder="">
+        <span>Felhasználónév</span>
+    </label>
+
+    <label>
+        <input class="input" type="email" name="email" required placeholder="">
+        <span>Email</span>
+    </label>
+
+    <label>
+        <input class="input" type="password" name="password" required placeholder="">
+        <span>Jelszó</span>
+    </label>
+
+    <label>
+        <input class="input" type="password" name="confirmPassword" required placeholder="">
+        <span>Jelszó újra</span>
+    </label>
+
+    <button class="submit" type="submit">Regisztráció</button>
+
+    <p class="signin">Van már fiókod? <a th:href="@{/login}">Jelentkezz be itt</a></p>
+</form>
+
+</body>
+</html>

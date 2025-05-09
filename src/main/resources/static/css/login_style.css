@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: url('https://www.example.com/movie-background.jpg') no-repeat center center fixed; /* Cseréld le a háttérképet egy filmes témájú képre */
+
     background-size: cover;
     display: flex;
     justify-content: center;
