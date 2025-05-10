@@ -126,7 +126,7 @@ class ReviewServiceTest {
 
         // Assert
         assertNotNull(result);
-        assertEquals(TEST_USERNAME, result.getReviewerName()); // Should use logged in username
+        assertEquals(TEST_USERNAME, result.getReviewerName());
         assertEquals(8, result.getRating());
         assertEquals("Great movie!", result.getComment());
         verify(movieRepository, times(1)).findById(1L);
