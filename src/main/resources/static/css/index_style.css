@@ -186,17 +186,4 @@ body {
     }
 }
 
-/* Opcionális háttérkép, ha mégis szeretnél használni */
-.bg-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://source.unsplash.com/random/1920x1080/?cinema');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.08;
-    z-index: -1;
-}
 ```
