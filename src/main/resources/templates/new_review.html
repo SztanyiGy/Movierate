@@ -38,7 +38,6 @@
             <label for="comment"><i class="fas fa-comment"></i> Véleményed</label>
             <textarea id="comment" th:field="*{comment}" maxlength="200"
                       placeholder="Írd le a véleményed... (max. 200 karakter)" oninput="updateCharCount()"></textarea>
-            <span class="char-counter"><span id="charCount">0</span>/200 karakter</span>
         </div>
 
         <button type="submit" class="submit-btn">
